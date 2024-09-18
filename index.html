@@ -565,6 +565,7 @@ const galleryImages = document.querySelectorAll(".gallery-img");
 galleryImages.forEach(img => {
     img.addEventListener("click", function() {
         modal.style.display = "block";
+        modal.style.width = "100vw";
         modalImg.src = this.src;
         captionText.innerHTML = this.alt;
     });
