@@ -210,7 +210,7 @@ footer {
     padding: 1rem;
 }
 
-/* Animations */
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -219,6 +219,61 @@ footer {
 .fade-in {
     animation: fadeIn 1s ease-out;
 }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background-color: #333;
+    border-radius: 3px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 2%;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background-color: #fff;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+ 
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+
 </style>
 <body>
     <header>
@@ -226,14 +281,20 @@ footer {
             <div class="logo">
                 <img src="FrameX-Logo.png" alt="FrameX Logo">   
             </div>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
+    
 
     <main>
         <section id="home" class="hero">
@@ -323,12 +384,37 @@ footer {
     </footer>
 
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Animate hero section
-  gsap.from(".hero h1", { opacity: 0, y: 50, duration: 1, delay: 0.5 });
-  gsap.from(".hero p", { opacity: 0, y: 50, duration: 1, delay: 0.8 });
+// document.addEventListener("DOMContentLoaded", () => {
+//   gsap.from(".hero h1", { opacity: 0, y: 50, duration: 1, delay: 0.5 });
+//   gsap.from(".hero p", { opacity: 0, y: 50, duration: 1, delay: 0.8 });
+//   gsap.from('.gallery-item', {
+//         opacity: 0,
+//         y: 50,
+//         duration: 0.8,
+//         stagger: 0.1,
+//         scrollTrigger: {
+//             trigger: '.gallery',
+//             start: 'top 80%',
+//             end: 'bottom 20%',
+//             toggleActions: 'play none none reverse'
+//         },
+//     });
+//   document.querySelectorAll("nav a").forEach((anchor) => {
+//     anchor.addEventListener("click", function (e) {
+//       e.preventDefault();
+//       const targetId = this.getAttribute("href");
+//       const targetElement = document.querySelector(targetId);
+//       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+//     });
+//   });
+// });
 
-  // Animate gallery items
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    gsap.from(".hero h1", { opacity: 0, y: 50, duration: 1, delay: 0.5 });
+  gsap.from(".hero p", { opacity: 0, y: 50, duration: 1, delay: 0.8 });
   gsap.from('.gallery-item', {
         opacity: 0,
         y: 50,
@@ -342,17 +428,37 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 
-  // Smooth scrolling for navigation links
-  document.querySelectorAll("nav a").forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Toggle nav-links on hamburger click
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
     });
-  });
 
+    // Smooth scrolling for navigation links
+    document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            // Close the navbar when a link is clicked (on mobile)
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // Optional: Close the navbar when clicking outside of it (for mobile)
+    document.addEventListener('click', (event) => {
+        const isClickInsideNav = navLinks.contains(event.target);
+        const isClickInsideHamburger = hamburger.contains(event.target);
+        
+        if (!isClickInsideNav && !isClickInsideHamburger && window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+        }
+    });
 });
+
 </script>
 </body>
 </html>
