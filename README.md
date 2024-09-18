@@ -18,6 +18,7 @@ GitHub Pages: Hosting the website using GitHub Pages.
 How to Use
 Clone the repository to your local machine:
 bash
+
 Copy code
 git clone https://github.com/yourusername/photography-portfolio.git
 Open the project directory and launch the index.html file in your browser to view the portfolio locally.
