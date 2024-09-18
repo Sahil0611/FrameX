@@ -96,7 +96,7 @@ section {
 
 .hero h1 {
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 21rem;
     color: #fff;
 }
 
@@ -157,11 +157,11 @@ section {
     text-align: start;
 }
 .about hr{
-    width: 1080px;
+    width: 80vw;
     margin: auto;  
 }
 .contact hr{
-    width: 1080px;
+    width: 80vw;
     margin: auto;  
 }
 
@@ -299,9 +299,18 @@ footer {
     .about hr{
         width: 90%;
     }
+    .logo img {
+    width: 120px;
+    height: 60px;
+    margin-right: 5px;
+}
+.hero{
+    margin-top: 0;
+}
 
     header{
         width: 100vw;
+        height: 100px;
     }
 
     nav{
@@ -316,7 +325,8 @@ footer {
     flex-direction: column;
     position: absolute;
     top: 80px;
-    /* width: 100vw; */
+    left: 2%;
+    width: 100vw;
     right: 0;
     background-color: #fff;
     width: 100%;
@@ -333,7 +343,14 @@ footer {
   }
   .bar{
     display: flex;
-    width: 50px;
+  }
+  .toggle{
+    width: 100%;
+    height: 100%;
+  }
+  #menuToggle{
+    width: 35px;
+    height: 25px;
   }
 
   /* Show nav links when checkbox is checked */
