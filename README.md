@@ -30,7 +30,7 @@ Welcome to my photography portfolio! This website showcases my collection of pro
 # How to Use
 Clone the repository to your local machine:
 
-Copy code git clone https://github.com/yourusername/photography-portfolio.git
+Copy code git clone https://sahil0611.github.io/FrameX/
 Open the project directory and launch the index.html file in your browser to view the portfolio locally.
 To deploy the portfolio, follow GitHub Pages guidelines or host it on your preferred platform.
 
